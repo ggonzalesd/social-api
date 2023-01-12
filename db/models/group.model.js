@@ -52,7 +52,11 @@ const GroupSchema = {
 
 class Group extends Model {
   static associate(models) {
-    //this.belongsTo(models.User, {as:'owner'})
+    this.belongsTo(models.User, {as:'owner'})
+    this.hasMany(models.Post, {
+      as:'posts',
+      foreignKey: 'groupId'
+    })
     // this.hasMany(models.Order, { as:'orders', foreignKey: 'userId' })
     // this belongsTo(models.Table, {as:'name'}) // this must to have an foreign key
   }

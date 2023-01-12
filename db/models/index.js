@@ -9,7 +9,10 @@ function setUpModels(sequelize) {
   Group.init(GroupSchema, Group.config(sequelize))
   Comment.init(CommentSchema, Comment.config(sequelize))
 
-  //User.associate(sequelize.models)
+  User.associate(sequelize.models)
+  Group.associate(sequelize.models)
+  Post.associate(sequelize.models)
+  Comment.associate(sequelize.models)
 }
 
 module.exports = setUpModels

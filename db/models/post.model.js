@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
+const { USER_TABLE } = require('./user.model')
+const { GROUP_TABLE } = require('./group.model')
 
 const POST_TABLE = 'posts'
 
@@ -8,6 +10,28 @@ const PostSchema = {
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER,
+  },
+  ownerId: {
+    type: DataTypes.STRING(64),
+    allowNull: false,
+    field: 'owner_id',
+    references: {
+      model: USER_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
+  },
+  groupId: {
+    type: DataTypes.STRING(64),
+    allowNull: false,
+    field: 'group_id',
+    references: {
+      model: GROUP_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
   },
   title: {
     allowNull: false,
@@ -36,8 +60,13 @@ const PostSchema = {
 }
 
 class Post extends Model {
-  static associate() {
-    // this.hasMany(models.Order, { as:'orders', foreignKey: 'userId' })
+  static associate(models) {
+    this.belongsTo(models.User, {as:'owner'})
+    this.belongsTo(models.Group, {as:'group'})
+    this.hasMany(models.Comment, {
+      as:'comments',
+      foreignKey: 'postId'
+    })
     // this belongsTo(models.Table, {as:'name'}) // this must to have an foreign key
   }
 

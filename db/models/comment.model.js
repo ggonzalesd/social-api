@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize')
 const { USER_TABLE } = require('./user.model')
+const { POST_TABLE } = require('./post.model')
 
 const COMMENT_TABLE = 'comments'
 
@@ -20,6 +21,17 @@ const CommentSchema = {
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL',
+  },
+  postId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'post_id',
+    references: {
+      model: POST_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
   },
   content: {
     allowNull: false,
@@ -44,7 +56,8 @@ const CommentSchema = {
 }
 
 class Comment extends Model {
-  static associate() {
+  static associate(models) {
+    this.belongsTo(models.User, {as:'owner'})
     //this.belongsTo(models.User, {as:'owner'})
     // this.hasMany(models.Order, { as:'orders', foreignKey: 'userId' })
     // this belongsTo(models.Table, {as:'name'}) // this must to have an foreign key

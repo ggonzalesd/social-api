@@ -39,7 +39,19 @@ const UserSchema = {
 }
 
 class User extends Model {
-  static associate() {
+  static associate(models) {
+    this.hasMany(models.Post, {
+      as:'posts',
+      foreignKey: 'ownerId'
+    })
+    this.hasMany(models.Comment, {
+      as:'comments',
+      foreignKey: 'ownerId'
+    })
+    this.hasMany(models.Group, {
+      as:'groups',
+      foreignKey: 'ownerId'
+    })
     // this.hasMany(models.Order, { as:'orders', foreignKey: 'userId' })
     // this belongsTo(models.Table, {as:'name'}) // this must to have an foreign key
   }
