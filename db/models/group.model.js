@@ -57,6 +57,12 @@ class Group extends Model {
       as:'posts',
       foreignKey: 'groupId'
     })
+    this.belongsToMany(models.User, {
+      as: 'members',
+      through: models.UserGroup,
+      foreignKey: 'groupId',
+      otherKey: 'userId'
+    })
     // this.hasMany(models.Order, { as:'orders', foreignKey: 'userId' })
     // this belongsTo(models.Table, {as:'name'}) // this must to have an foreign key
   }

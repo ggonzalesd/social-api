@@ -6,6 +6,7 @@ const groupRouter = require('./group.router')
 const postRouter = require('./post.router')
 const commentRouter = require('./comment.router')
 const userGroupRouter = require('./user-group.router')
+const userPostRouter = require('./user-post.router')
 
 const router = express.Router()
 
@@ -15,5 +16,6 @@ router.use('/group', groupRouter)
 router.use('/post', postRouter)
 router.use('/comment', commentRouter)
 router.use('/user-group', userGroupRouter)
+router.use('/user-post', userPostRouter)
 
 module.exports = router

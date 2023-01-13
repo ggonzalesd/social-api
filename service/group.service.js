@@ -14,7 +14,7 @@ class GroupService {
   async find(id) {
     const group = await models.Group.findByPk(id, {
       include: [
-        'posts', 'owner'
+        'posts', 'owner', 'members'
       ]
     })
     if ( !group )
