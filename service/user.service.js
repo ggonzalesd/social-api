@@ -7,7 +7,8 @@ class UserService {
   async all({ limit=10, offset=0 }) {
     const users = await models.User.findAndCountAll({
       limit,
-      offset
+      offset,
+      attributes: {exclude: ['password']},
     })
     return users
   }
@@ -16,11 +17,11 @@ class UserService {
     const user = await models.User.findByPk(id, {
       include: [
         'posts', 'comments', 'groups'
-      ]
+      ],
+      attributes: {exclude: ['password']},
     })
     if ( !user )
       throw boom.notFound(`User '${id}' not found!`)
-    delete user.dataValues.password
     return user
   }
 

@@ -31,7 +31,7 @@ const PostSchema = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
+    onDelete: 'CASCADE',
   },
   title: {
     allowNull: false,

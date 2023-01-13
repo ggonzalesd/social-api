@@ -58,6 +58,7 @@ const CommentSchema = {
 class Comment extends Model {
   static associate(models) {
     this.belongsTo(models.User, {as:'owner'})
+    this.belongsTo(models.Post, {as:'post'})
     //this.belongsTo(models.User, {as:'owner'})
     // this.hasMany(models.Order, { as:'orders', foreignKey: 'userId' })
     // this belongsTo(models.Table, {as:'name'}) // this must to have an foreign key
