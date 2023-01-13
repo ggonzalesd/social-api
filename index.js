@@ -8,6 +8,8 @@ const applyErrorHandlers = require('./middleware/api.error.handler')
 const api = express()
 const port = config.port
 
+require('./utils/auth')
+
 api.use(cors())
 api.use(express.json())
 

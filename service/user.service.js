@@ -25,6 +25,13 @@ class UserService {
     return user
   }
 
+  async getByUsername(id) {
+    const user = await models.User.findByPk(id)
+    if ( !user )
+      throw boom.notFound(`User '${id}' not found!`)
+    return user
+  }
+
   async create(body) {
     const password = await bcrypt.hash(body.password, 10)
     const user = await models.User.create({ ...body, password })

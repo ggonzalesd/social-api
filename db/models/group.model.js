@@ -18,7 +18,7 @@ const GroupSchema = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
+    onDelete: 'CASCADE',
   },
   display: {
     allowNull: false,

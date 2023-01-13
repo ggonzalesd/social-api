@@ -20,7 +20,7 @@ const CommentSchema = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
+    onDelete: 'CASCADE',
   },
   postId: {
     type: DataTypes.INTEGER,

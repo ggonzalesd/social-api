@@ -20,7 +20,7 @@ const PostSchema = {
       key: 'id'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
+    onDelete: 'CASCADE',
   },
   groupId: {
     type: DataTypes.STRING(64),
